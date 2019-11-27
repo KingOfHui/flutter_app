@@ -11,6 +11,18 @@ buildscript {
     }
 }
 
+//解决androidX包不同版本冲突
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'androidx.core' &&
+                    !details.requested.name.contains('androidx')) {
+                details.useVersion "1.0.2"
+            }
+        }
+    }
+}
+
 allprojects {
     repositories {
         google()

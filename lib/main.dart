@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lib_base/utils/utils.dart';
+import 'package:lib_base/widgets/progress_dialog.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,6 +48,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      showTransparentDialog(
+          context: context,
+          barrierDismissible: false,
+          builder:(_) {
+            return WillPopScope(
+              onWillPop: () async {
+                // 拦截到返回键，证明dialog被手动关闭
+//                _isShowDialog = false;
+                return Future.value(true);
+              },
+              child: ProgressDialog("正在加载..."),
+            );
+          }
+      );
+    });
+  }
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has

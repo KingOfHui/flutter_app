@@ -8,29 +8,19 @@ class BasePagePresenter<V extends IMvpView> extends IPresenter{
   BasePagePresenter();
 
   @override
-  void deactivate() {
-    // TODO: implement deactivate
-  }
+  void deactivate() {}
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-  }
+  void didChangeDependencies() {}
 
   @override
-  void didUpdateWidgets<W>(W oldWidget) {
-    // TODO: implement didUpdateWidgets
-  }
+  void didUpdateWidgets<W>(W oldWidget) {}
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-  }
+  void dispose() {}
 
   @override
-  void initState() {
-    // TODO: implement initState
-  }
+  void initState() {}
 
 
 }

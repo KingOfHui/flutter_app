@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lib_base/res/Gaps.dart';
+import 'package:lib_base/res/gaps.dart';
 
 class ProgressDialog extends Dialog {
 
@@ -10,7 +10,6 @@ class ProgressDialog extends Dialog {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Material(
       type: MaterialType.transparency,
       child: Center(
@@ -27,7 +26,7 @@ class ProgressDialog extends Dialog {
               Theme(
                 data: ThemeData(
                   cupertinoOverrideTheme: CupertinoThemeData(
-                    brightness: Brightness.dark //
+                    brightness: Brightness.dark // 局部指定夜间模式，加载圈颜色会设置为白色
                   )
                 ),
                 child: const CupertinoActivityIndicator(radius: 14.0,),
