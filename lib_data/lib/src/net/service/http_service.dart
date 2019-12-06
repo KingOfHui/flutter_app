@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:lib_base/net/convert/response_converter.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../convert/response_converter.dart';
 
 
 abstract class HttpService {

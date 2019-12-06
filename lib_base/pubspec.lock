@@ -183,6 +183,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.2"
+  localstorage:
+    dependency: "direct main"
+    description:
+      name: localstorage
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1+4"
+  logging:
+    dependency: "direct main"
+    description:
+      name: logging
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.11.3+2"
   matcher:
     dependency: transitive
     description:
@@ -294,7 +308,7 @@ packages:
     source: hosted
     version: "4.0.2"
   sqflite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite
       url: "https://pub.flutter-io.cn"

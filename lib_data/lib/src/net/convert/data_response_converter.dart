@@ -1,5 +1,5 @@
-import 'package:lib_base/net/base/data_response.dart';
-import 'package:lib_base/net/convert/response_converter.dart';
+import '../base/data_response.dart';
+import 'response_converter.dart';
 
 class DataResponseConverter extends ResponseConverter {
   final String dataKey = "data";
