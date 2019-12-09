@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:lib_data/src/net/convert/data_response_converter.dart';
 
 import '../interceptor/TokenInterceptor.dart';
 import 'client_service.dart';
+import 'package:dio/adapter.dart';
 
 class RestClient {
   final Config _config;
@@ -22,7 +26,16 @@ class RestClient {
       ..interceptors.add(tokenInterceptor)
       ..interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
 
-    clientService = ClientService(dio);
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.findProxy = (uri) {
+        //proxy all request to localhost:8888
+        return "PROXY 192.168.43.183:8888";
+      };
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+    };
+    clientService = ClientService(dio,convert:DataResponseConverter());
   }
 
   void switchBaseUrl(String url) {
