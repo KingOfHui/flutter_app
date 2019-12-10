@@ -1,5 +1,5 @@
 import 'package:lib_base/db/DBHelper.dart';
-import 'package:lib_base/utils/Log.dart';
+import 'package:lib_base/utils/log.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDatabaseMigrationListener implements DatabaseMigrationListener{
@@ -21,8 +21,10 @@ class AppDatabaseMigrationListener implements DatabaseMigrationListener{
 
   Future<void> _createDatabase(Database db, int version) async{
     if(VERSION_1_0_0 == version){
-      await db.execute('CREATE TABLE AppContent (trackId INTEGER PRIMARY KEY, _order INTEGER, isFeatureApp INTEGER, '
-          'isFreeApp INTEGER, trackName TEXT, description TEXT, meta TEXT)');
+//      await db.execute('CREATE TABLE FoodList (trackId INTEGER PRIMARY KEY, _order INTEGER, isFeatureApp INTEGER, '
+//          'isFreeApp INTEGER, trackName TEXT, description TEXT, meta TEXT)');
+      await db.execute('CREATE TABLE TableList (_id INTEGER PRIMARY KEY, areaID INTEGER, tableStatus INTEGER, '
+          'itemID INTEGER, tableName TEXT, currPerson INTEGER)');
     }
   }
 }

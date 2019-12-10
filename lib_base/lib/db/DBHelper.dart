@@ -1,4 +1,4 @@
-import 'package:lib_base/utils/Log.dart';
+import 'package:lib_base/utils/log.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -26,26 +26,27 @@ class DBHelper {
   }
 
   Future<void> init() async {
-    if (null == _databaseConfig) {
-      throw NullThrownError;
-    }
+//    if (null == _databaseConfig) {
+//      throw NullThrownError;
+//    }
     var path = await _getDBPath();
 
     _database = await openDatabase(path,
         version: _databaseConfig.version,
-        onCreate: null != _databaseConfig.databaseMigrationListener
-            ? _databaseConfig.databaseMigrationListener.onCreate
-            : (Database db, int version) async {
+        onCreate: (Database db, int version) async {
                 Log.info('onCreate version : $version');
                 //数据库创建完成
                 //await db.execute("CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER, num REAL)");
+                await db.execute('CREATE TABLE TableList (_id INTEGER PRIMARY KEY, areaID INTEGER, tableStatus INTEGER, '
+                    'itemID INTEGER, tableName TEXT, currPerson INTEGER)');
               },
         onUpgrade: null != _databaseConfig.databaseMigrationListener
             ? _databaseConfig.databaseMigrationListener.onUpgrade
             : (Database db, int oldVersion, int newVersion) {
                 Log.info('oldVersion : $oldVersion');
                 Log.info('newVersion : $newVersion');
-              });
+              },
+    );
   }
 
   ///获取当前数据库对象
