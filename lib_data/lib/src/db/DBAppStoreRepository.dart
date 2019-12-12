@@ -11,10 +11,19 @@ class DBAppStoreRepository {
   DBAppStoreRepository(this._database);
 
 
-  Future<void> saveOrUpdateFeatureApp(TableListDataRecord record) async{
+  Future<void> saveOrUpdateTableList(TableListDataRecord record) async{
 
     String meta = jsonEncode(record.toJson());
     int count = await _database.rawUpdate('UPDATE TableList SET areaID = ?, tableStatus = ? , itemID = ? , tableName = ? , currPerson = ?  WHERE tableName = ?', [record.areaID,record.tableStatus,record.itemID,record.tableName,record.currPerson,record.tableName]);
+    if(0 == count){
+      await _database.rawInsert('INSERT INTO TableList (areaID, tableStatus, itemID, tableName, currPerson) VALUES (?, ?, ?, ?, ?)',
+          [record.areaID,record.tableStatus,record.itemID,record.tableName,record.currPerson]);
+    }
+  }
+  Future<void> saveOrUpdateFoodList(TableListDataRecord record) async{
+
+    String meta = jsonEncode(record.toJson());
+    int count = await _database.rawUpdate('UPDATE FoodList SET areaID = ?, tableStatus = ? , itemID = ? , tableName = ? , currPerson = ?  WHERE tableName = ?', [record.areaID,record.tableStatus,record.itemID,record.tableName,record.currPerson,record.tableName]);
     if(0 == count){
       await _database.rawInsert('INSERT INTO TableList (areaID, tableStatus, itemID, tableName, currPerson) VALUES (?, ?, ?, ?, ?)',
           [record.areaID,record.tableStatus,record.itemID,record.tableName,record.currPerson]);

@@ -83,7 +83,7 @@ class Home extends StatelessWidget {
                 "deviceKey": "AndroidDCB_1bd4a1c0df5b",
                 "deviceName": "KIW-TL00H",
               };
-              ServiceManager().restClient.clientService.getTableList(foodListMap).listen((data){
+              ServiceManager().restClient.clientService.getFoodList(foodListMap).listen((data){
                 data.records.forEach((d){
                   AppStoreApplication().dbAppStoreRepository.saveOrUpdateFeatureApp(d);
 
@@ -104,7 +104,7 @@ class Home extends StatelessWidget {
           ),
           RaisedButton(
             onPressed: ()async{
-              var loadAppDetail = await AppStoreApplication().dbAppStoreRepository.loadAppDetail(0);
+              var loadAppDetail = await AppStoreApplication().dbAppStoreRepository.loadAppDetail(0).toList();
               print(loadAppDetail);
 
 

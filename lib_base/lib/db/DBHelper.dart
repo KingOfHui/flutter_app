@@ -39,6 +39,13 @@ class DBHelper {
                 //await db.execute("CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER, num REAL)");
                 await db.execute('CREATE TABLE TableList (_id INTEGER PRIMARY KEY, areaID INTEGER, tableStatus INTEGER, '
                     'itemID INTEGER, tableName TEXT, currPerson INTEGER)');
+                await db.execute('''
+                CREATE TABLE Unit (_id INTERGER PRIMARY KEY, foodID TEXT, unitCode TEXT, price REAL, unit TEXT)
+                ''');
+                await db.execute('''
+                CREATE TABLE FoodList (_id INTERGER PRIMARY KEY, foodName TEXT, foodID TEXT, tasteList TEXT,FOREIGN KEY (foodID) REFERENCES Unit(foodID)
+                ''');
+                Log.info('onCreate Success');
               },
         onUpgrade: null != _databaseConfig.databaseMigrationListener
             ? _databaseConfig.databaseMigrationListener.onUpgrade

@@ -30,7 +30,7 @@ class RestClient {
         (HttpClient client) {
       client.findProxy = (uri) {
         //proxy all request to localhost:8888
-        return "PROXY 192.168.43.183:8888";
+        return "PROXY 192.168.4.238:8888";
       };
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
